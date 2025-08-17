@@ -7,8 +7,8 @@ provider:
   region: us-west-2
   stage: dev
   environment:
-    API_URL_SUPABASE: ${env:API_URL_SUPABASE}
-    ANON_API_KEY: ${env:ANON_API_KEY}
+      API_URL_SUPABASE: ${{ secrets.API_URL_SUPABASE }} 
+      ANON_API_KEY: ${{ secrets.ANON_API_KEY }}    
   httpApi:
     cors: true
 
