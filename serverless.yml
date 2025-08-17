@@ -13,43 +13,15 @@ provider:
     cors: true
 
 plugins:
-  - serverless-esbuild
   - serverless-offline
 
 package:
-  individually: true
-  exclude:
-    - node_modules/**
-    - test/**
-    - coverage/**
+  individually: false
+  patterns:
+    - '!node_modules/**/@nestjs/**/schematics/**'
 
 functions:
   api:
-    handler: src/lambda.handler
+    handler: dist/lambda.handler
     events:
-      - httpApi:
-          path: /
-          method: any
-      - httpApi:
-          path: /{proxy+}
-          method: any
-
-custom:
-  esbuild:
-    bundle: true
-    minify: false
-    sourcemap: true
-    target: node20
-    platform: node
-    external: [
-      '@nestjs/websockets/socket-module',
-      '@grpc/grpc-js',
-      '@grpc/proto-loader',
-      'kafkajs',
-      'mqtt',
-      'nats', 
-      'ioredis',
-      'amqplib',
-      'amqp-connection-manager',
-      '@nestjs/microservices'
-    ]
+      - httpApi: '*'
