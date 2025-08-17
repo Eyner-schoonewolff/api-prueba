@@ -13,16 +13,17 @@ provider:
     cors: true
 
 plugins:
+  - serverless-esbuild
   - serverless-offline
 
-package:
-  individually: true
-  include:
-    - dist/**
-  exclude:
-    - node_modules/**
-    - test/**
-    - coverage/**
+# package:
+#   individually: true
+#   include:
+#     - dist/**
+#   exclude:
+#     - node_modules/**
+#     - test/**
+#     - coverage/**
 
 functions:
   api:
@@ -34,3 +35,15 @@ functions:
       - httpApi:
           path: /{proxy+}
           method: any
+
+custom:
+  esbuild:
+    bundle: true
+    minify: true
+    sourcemap: true
+    target: node20
+    platform: node
+    external: []
+    packager: npm
+    exclude: [] 
+    keepOutputDirectory: true
