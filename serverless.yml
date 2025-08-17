@@ -16,9 +16,13 @@ plugins:
   - serverless-offline
 
 package:
-  individually: false
-  patterns:
-    - '!node_modules/**/@nestjs/**/schematics/**'
+  individually: true
+  include:
+    - dist/**
+  exclude:
+    - node_modules/**
+    - test/**
+    - coverage/**
 
 functions:
   api:

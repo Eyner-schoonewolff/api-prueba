@@ -19,4 +19,4 @@ export const handler: Handler = async (event: APIGatewayProxyEvent, context: Con
     server = await bootstrapServer();
   }
   return server(event, context, callback);
-}; 
+};  
