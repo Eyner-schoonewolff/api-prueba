@@ -16,14 +16,12 @@ plugins:
   - serverless-esbuild
   - serverless-offline
 
-# package:
-#   individually: true
-#   include:
-#     - dist/**
-#   exclude:
-#     - node_modules/**
-#     - test/**
-#     - coverage/**
+package:
+  individually: true
+  exclude:
+    - node_modules/**
+    - test/**
+    - coverage/**
 
 functions:
   api:
