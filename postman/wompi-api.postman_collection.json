@@ -1,0 +1,200 @@
+{
+  "info": {
+    "_postman_id": "c9c8a9f2-0d47-4c3a-9bfe-5f6a92c66e00",
+    "name": "Wompi API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Colección para probar la API de Wompi (NestJS)"
+  },
+  "item": [
+    {
+      "name": "Env",
+      "item": [
+        {
+          "name": "Health",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/health",
+              "host": ["{{baseUrl}}"],
+              "path": ["health"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Swagger Docs",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/docs",
+              "host": ["{{baseUrl}}"],
+              "path": ["docs"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Products",
+      "item": [
+        {
+          "name": "List products",
+          "request": {
+            "method": "GET",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"}
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/products",
+              "host": ["{{baseUrl}}"],
+              "path": ["products"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Customers",
+      "item": [
+        {
+          "name": "Create customer",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Juan Pérez\",\n  \"email\": \"juan.perez@example.com\",\n  \"address\": \"Calle 123 #45-67\",\n  \"phone\": \"3001234567\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/customers",
+              "host": ["{{baseUrl}}"],
+              "path": ["customers"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get customer by id",
+          "request": {
+            "method": "GET",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"}
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/customers/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["customers", ":id"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Transactions",
+      "item": [
+        {
+          "name": "Create transaction (PENDING)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"productId\": \"550e8400-e29b-41d4-a716-446655440001\",\n  \"customerName\": \"Juan Pérez\",\n  \"customerEmail\": \"juan.perez@example.com\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/transactions",
+              "host": ["{{baseUrl}}"],
+              "path": ["transactions"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update transaction status",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"COMPLETED\",\n  \"wompiTransactionId\": \"TRX_TEST_123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/transactions/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["transactions", ":id"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get transaction by id",
+          "request": {
+            "method": "GET",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"}
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/transactions/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["transactions", ":id"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Deliveries",
+      "item": [
+        {
+          "name": "Create delivery",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customerId\": \"<customer_uuid>\",\n  \"productId\": \"550e8400-e29b-41d4-a716-446655440001\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/deliveries",
+              "host": ["{{baseUrl}}"],
+              "path": ["deliveries"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get delivery by id",
+          "request": {
+            "method": "GET",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"}
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/deliveries/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["deliveries", ":id"]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:3001" }
+  ]
+}
