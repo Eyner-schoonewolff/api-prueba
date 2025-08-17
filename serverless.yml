@@ -43,7 +43,17 @@ custom:
     sourcemap: true
     target: node20
     platform: node
-    external: []
+    external: [
+      '@nestjs/websockets/socket-module',
+      '@grpc/grpc-js',
+      '@grpc/proto-loader',
+      'kafkajs',
+      'mqtt',
+      'nats',
+      'ioredis',
+      'amqplib',
+      'amqp-connection-manager'
+    ]
     packager: npm
     exclude: [] 
     keepOutputDirectory: true
