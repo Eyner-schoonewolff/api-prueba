@@ -27,7 +27,7 @@ plugins:
 
 functions:
   api:
-    handler: dist/lambda.handler
+    handler: src/lambda.handler
     events:
       - httpApi:
           path: /
@@ -39,7 +39,7 @@ functions:
 custom:
   esbuild:
     bundle: true
-    minify: true
+    minify: false
     sourcemap: true
     target: node20
     platform: node
@@ -49,11 +49,9 @@ custom:
       '@grpc/proto-loader',
       'kafkajs',
       'mqtt',
-      'nats',
+      'nats', 
       'ioredis',
       'amqplib',
-      'amqp-connection-manager'
+      'amqp-connection-manager',
+      '@nestjs/microservices'
     ]
-    packager: npm
-    exclude: [] 
-    keepOutputDirectory: true
