@@ -19,9 +19,15 @@ package:
   individually: false
   patterns:
     - '!node_modules/**/@nestjs/**/schematics/**'
+    - '!node_modules/**/test/**'
+    - '!node_modules/**/tests/**'
+    - '!node_modules/**/*.md'
+    - '!**/*.map'
 
 functions:
   api:
     handler: dist/lambda.handler
     events:
       - httpApi: '*'
+    environment:
+      NODE_OPTIONS: '--enable-source-maps'

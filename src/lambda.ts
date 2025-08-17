@@ -1,22 +1,27 @@
-import 'reflect-metadata';
-import { Handler, APIGatewayProxyEvent, Context, Callback } from 'aws-lambda';
-import serverless from 'serverless-http';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './modules/app.module';
-import { ValidationPipe } from '@nestjs/common';
+import serverless from 'serverless-http';
 
-let server: any;
+let handler: any;
 
-async function bootstrapServer() {
+async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
+  
+  // Configurar CORS si es necesario
+  app.enableCors({
+    origin: true,
+    credentials: true,
+  });
+
   await app.init();
-  return serverless(app.getHttpAdapter().getInstance());
+  
+  const expressApp = app.getHttpAdapter().getInstance();
+  return serverless(expressApp);
 }
 
-export const handler: Handler = async (event: APIGatewayProxyEvent, context: Context, callback: Callback) => {
-  if (!server) {
-    server = await bootstrapServer();
+export const lambdaHandler = async (event: any, context: any) => {
+  if (!handler) {
+    handler = await bootstrap();
   }
-  return server(event, context, callback);
-};  
+  return handler(event, context);
+};
