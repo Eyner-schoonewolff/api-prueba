@@ -6,4 +6,4 @@ export class HealthController {
   health() {
     return { status: 'Bienvenido a la API de Wompi', version: '1.0.0' };
   }
-}
+} 

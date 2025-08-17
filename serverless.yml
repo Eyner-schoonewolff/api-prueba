@@ -28,4 +28,9 @@ functions:
   api:
     handler: dist/lambda.handler
     events:
-      - httpApi: '*'
+      - httpApi:
+          path: /
+          method: any
+      - httpApi:
+          path: /{proxy+}
+          method: any
