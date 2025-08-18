@@ -11,7 +11,7 @@ export class TransactionsService {
     const id = uuid();
     
     // Si no se proporciona customerId, usar el ID por defecto para pruebas
-    const finalCustomerId = input.customerId || '8690975e-02f5-42cc-9df1-b3f66febb094';
+    const finalCustomerId = input.customerId;
 
     // Obtener precio actual del producto para fijar el monto de la transacción
     const { data: prod, error: prodErr } = await this.db
