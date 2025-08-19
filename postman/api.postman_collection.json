@@ -3,7 +3,7 @@
     "_postman_id": "c9c8a9f2-0d47-4c3a-9bfe-5f6a92c66e00",
     "name": "Wompi API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": "Colección para probar la API de Wompi (NestJS)"
+    "description": "Colección para probar la API (NestJS + Supabase + Lambda). Incluye headers 'x-api-key' y baseUrl local por defecto (http://localhost:9000)."
   },
   "item": [
     {
@@ -45,7 +45,8 @@
           "request": {
             "method": "GET",
             "header": [
-              {"key": "Content-Type", "value": "application/json"}
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "x-api-key", "value": "{{apiKey}}"}
             ],
             "url": {
               "raw": "{{baseUrl}}/products",
@@ -65,7 +66,8 @@
           "request": {
             "method": "POST",
             "header": [
-              {"key": "Content-Type", "value": "application/json"}
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "x-api-key", "value": "{{apiKey}}"}
             ],
             "body": {
               "mode": "raw",
@@ -84,7 +86,8 @@
           "request": {
             "method": "GET",
             "header": [
-              {"key": "Content-Type", "value": "application/json"}
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "x-api-key", "value": "{{apiKey}}"}
             ],
             "url": {
               "raw": "{{baseUrl}}/customers/:id",
@@ -104,7 +107,8 @@
           "request": {
             "method": "POST",
             "header": [
-              {"key": "Content-Type", "value": "application/json"}
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "x-api-key", "value": "{{apiKey}}"}
             ],
             "body": {
               "mode": "raw",
@@ -119,11 +123,31 @@
           "response": []
         },
         {
+          "name": "List transactions (optional customerId)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "x-api-key", "value": "{{apiKey}}"}
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/transactions",
+              "host": ["{{baseUrl}}"],
+              "path": ["transactions"],
+              "query": [
+                {"key": "customerId", "value": "{{customerId}}", "disabled": true}
+              ]
+            }
+          },
+          "response": []
+        },
+        {
           "name": "Update transaction status",
           "request": {
             "method": "PATCH",
             "header": [
-              {"key": "Content-Type", "value": "application/json"}
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "x-api-key", "value": "{{apiKey}}"}
             ],
             "body": {
               "mode": "raw",
@@ -142,7 +166,8 @@
           "request": {
             "method": "GET",
             "header": [
-              {"key": "Content-Type", "value": "application/json"}
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "x-api-key", "value": "{{apiKey}}"}
             ],
             "url": {
               "raw": "{{baseUrl}}/transactions/:id",
@@ -162,7 +187,8 @@
           "request": {
             "method": "POST",
             "header": [
-              {"key": "Content-Type", "value": "application/json"}
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "x-api-key", "value": "{{apiKey}}"}
             ],
             "body": {
               "mode": "raw",
@@ -181,7 +207,8 @@
           "request": {
             "method": "GET",
             "header": [
-              {"key": "Content-Type", "value": "application/json"}
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "x-api-key", "value": "{{apiKey}}"}
             ],
             "url": {
               "raw": "{{baseUrl}}/deliveries/:id",
@@ -195,6 +222,8 @@
     }
   ],
   "variable": [
-    { "key": "baseUrl", "value": "http://localhost:3001" }
+    { "key": "baseUrl", "value": "http://localhost:9000" },
+    { "key": "apiKey", "value": "changeme" },
+    { "key": "customerId", "value": "" }
   ]
 }
