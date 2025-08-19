@@ -2,6 +2,10 @@
 
 Backend serverless para la prueba técnica. Expone endpoints REST para productos, clientes, transacciones y entregas; persiste en Supabase (PostgreSQL) y se despliega en AWS Lambda a través de API Gateway.
 
+## Punto de enlace API
+-  [https://t22l5f0gth.execute-api.us-west-2.amazonaws.com](https://t22l5f0gth.execute-api.us-west-2.amazonaws.com/docs) -> Swagger
+
+
 ### Decisiones técnicas
 - **Framework**: NestJS (TypeScript) por su modularidad, inyección de dependencias y DX.
 - **Arquitectura**: módulos por dominio (`products`, `transactions`, `customers`, `deliveries`) con separación `presentation` (controllers) y `services` (casos de uso). Integración a datos por puerto/adapter via `SupabaseModule`.
@@ -71,6 +75,9 @@ Relaciones:
 - `transactions.customer_id` → FK a `customers.id`
 - `deliveries.product_id` → FK a `products.id`
 - `deliveries.customer_id` → FK a `customers.id`
+
+<img width="1326" height="1030" alt="imagen" src="https://github.com/user-attachments/assets/83467906-d1eb-4f0a-ad3f-21403ce40ffe" />
+
 
 Tablas y columnas principales:
 - `products(id uuid pk, name varchar, description text, price int, stock int, image varchar, created_at timestamptz, updated_at timestamptz, deleted_at timestamptz)`
@@ -180,8 +187,10 @@ npx serverless deploy
 ### Colección de Postman
 `postman/wompi-api.postman_collection.json`
 
-### Notas
-- Los pagos reales de Wompi deben usarse en modo Sandbox para pruebas. El flujo de captura/confirmación puede integrarse en el frontend y luego actualizar el estado vía `PATCH /transactions/:id`.
-- El stock se decrementa automáticamente cuando una transacción cambia a `COMPLETED`.
+### Infraestructura AWS Lambda + API Gateway + Amplify
+<img width="1101" height="852" alt="imagen" src="https://github.com/user-attachments/assets/794397a3-3f4c-4fc8-8e6d-d867d99fc3ac" />
+
+
+
 
 
